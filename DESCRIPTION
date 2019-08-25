@@ -9,3 +9,12 @@ Description: More about what it does (maybe more than one line)
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 6.1.1
+Collate: 
+    '01checkOn_Func.R'
+    'utility.R'
+    '02buka_Func.R'
+    '03Achuchai_func.R'
+    '03Bwaichu_Func.R'
+    '04jiaban_Func.R'
+    '05qingjia_Func.R'
