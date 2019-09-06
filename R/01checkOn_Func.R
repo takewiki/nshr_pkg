@@ -255,6 +255,37 @@ checkOn_sum <- function(checkOn_all_data,
 
 }
 
+#' 按天计算汇总数据
+#'
+#' @param checkOn_all_data  考勤数据
+#' @param startDate 开始日期
+#' @param EndDate  结束日期
+#' @param ErrorOnly 是否只包含错误
+#'
+#' @return 返回值
+#' @export
+#'
+#' @examples
+#' checkOn_sum_byDay();
+checkOn_sum_byDay <- function(checkOn_all_data,
+                        startDate='2019-06-01',
+                        EndDate='2019-06-30',
+                        ErrorOnly=FALSE) {
+  data <-checkOn_all_data;
+  #只显示异常数据
+  if (ErrorOnly == TRUE){
+    data <- data[data$FErrCount == 1, ];
+  }
+  #只显示过滤时间范围内数据
+  data <- data[data$FDate >= startDate & data$FDate <= EndDate, ];
+  data$FType <-'迟到'
+  #针对数据进行汇总
+  res <- data %>% group_by(FDeptName,FEmpName,FType,FDate) %>% summarise(FTotalValue = sum(FMinDiff))
+  return(res);
+
+}
+
+
 
 
 

@@ -119,4 +119,26 @@ chuChai_sum <- function(data,startDate='2019-07-01',
 
 }
 
+#' 出差数据按天汇总
+#'
+#' @param data  数据
+#' @param startDate 开始日期
+#' @param endDate 结束日期
+#'
+#' @return 返回值
+#' @export
+#'
+#' @examples
+#' chuChai_sum_byDay();
+chuChai_sum_byDay <- function(data,startDate='2019-07-01',
+                        endDate='2019-07-31') {
+  #只显示过滤时间范围内数据
+  data <- data[data$FStartDate >= startDate & data$FStartDate <= endDate, ];
+  #针对数据进行汇总
+  res <- data %>% group_by(FDeptName,FEmpName,FType,FStartDate) %>% summarise(FTotalValue = sum(FHours)*60)
+  names(res) <-c('FDeptName','FEmpName','FType','FDate','FTotalValue');
+  return(res);
+
+}
+
 
