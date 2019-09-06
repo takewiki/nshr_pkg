@@ -137,7 +137,7 @@ chuChai_sum_byDay <- function(data,startDate='2019-07-01',
   #针对数据进行汇总
   res <- data %>% group_by(FDeptName,FEmpName,FType,FStartDate) %>% summarise(FTotalValue = sum(FHours)*60)
   names(res) <-c('FDeptName','FEmpName','FType','FDate','FTotalValue');
-  res$FType <-'出差'
+  res$FType <-'出差补时'
   return(res);
 
 }
